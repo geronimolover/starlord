@@ -362,7 +362,7 @@ async def bot_info(bot, message):
     
     @Client.on_message(filters.command("help"))
     async def help(bot, message):
-        buttons = [
+buttons = [
         [
             InlineKeyboardButton
                 (
@@ -370,9 +370,9 @@ async def bot_info(bot, message):
                 )
         ]
     ]
-  await bot.send_photo(chat_id=message.from_user.id,
-        photo="https://telegra.ph/file/d93aad61f215cf725ff87.jpg",
-        caption="Add me to your Group as admin\nGive me full permission\nI will give movies there\n\n<b><u>Basic Commads</u></b>\n➥ /start : check if am alive or dead\n➥ /about : About Me\n➥ /stats user Status",
-        parse_mode="html",
-        reply_to_message_id=message.message_id,
-    reply_markup=InlineKeyboardMarkup(buttons))
+await bot.send_photo(chat_id=message.from_user.id,
+photo="https://telegra.ph/file/d93aad61f215cf725ff87.jpg",
+caption="Add me to your Group as admin\nGive me full permission\nI will give movies there\n\n<b><u>Basic Commads</u></b>\n➥ /start : check if am alive or dead\n➥ /about : About Me\n➥ /stats user Status",
+parse_mode="html",
+reply_to_message_id=message.message_id,
+reply_markup=InlineKeyboardMarkup(buttons))

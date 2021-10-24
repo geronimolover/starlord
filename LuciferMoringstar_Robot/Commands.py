@@ -362,7 +362,7 @@ async def bot_info(bot, message):
     
 
 @Client.on_message(filters.command('help'))
-async def bot_info(bot, message):
+async def help(bot, message):
     buttons = [
         [
             InlineKeyboardButton

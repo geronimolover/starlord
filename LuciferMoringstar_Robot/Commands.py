@@ -362,8 +362,15 @@ async def bot_info(bot, message):
     
     @Client.on_message(filters.command("help"))
     async def help(bot, message):
-
-await bot.send_photo(chat_id=message.from_user.id,
+    buttons = [
+        [
+            InlineKeyboardButton
+                (
+                     'Official Group', url="https://t.me/all_super_movies"
+                )
+        ]
+    ]    
+    await bot.send_photo(chat_id=message.from_user.id,
 photo="https://telegra.ph/file/d93aad61f215cf725ff87.jpg",
 caption="Add me to your Group as admin\nGive me full permission\nI will give movies there\n\n<b><u>Basic Commads</u></b>\n➥ /start : check if am alive or dead\n➥ /about : About Me\n➥ /stats user Status",
 parse_mode="html",

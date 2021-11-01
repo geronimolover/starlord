@@ -13,6 +13,8 @@ BOT = {}
 
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
 async def filter(client, message):
+    movie_name = message.text
+    movie_info = get_movie_info(movie_name)
     if message.text.startswith("/"):
         return
     if AUTH_CHANNEL:

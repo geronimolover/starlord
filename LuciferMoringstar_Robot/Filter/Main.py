@@ -109,8 +109,6 @@ async def filter(client, message):
             if poster:
                 await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
             else:
-                await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
-            else:
             LuciferMoringstar=await client.send_photo(
         chat_id=message.chat.id,
         photo="https://telegra.ph/file/86f4da717fc9ba639e469.png",

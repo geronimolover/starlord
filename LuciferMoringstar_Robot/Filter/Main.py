@@ -169,6 +169,7 @@ async def group(client, message):
                 )
         else:
              updated_query = query_message.replace(" ", "+")
+        try:        
             LuciferMoringstar=await client.send_photo(
         chat_id=message.chat.id,
         photo="https://telegra.ph/file/86f4da717fc9ba639e469.png",

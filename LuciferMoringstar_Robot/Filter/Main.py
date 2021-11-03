@@ -106,7 +106,7 @@ async def filter(client, message):
             )
             poster=None
             if movie_info and poster:
-            try:
+        try:
                 await message.reply_photo(photo=poster, caption=f"""📀 𝖳𝗂𝗍𝗅𝖾 : <b>{movie_info['title']}</b>
                             
 ⏱️ 𝖱𝗎𝗇𝗍𝗂𝗆𝖾 : <b>{movie_info['duration']}</b>

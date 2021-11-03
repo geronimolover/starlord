@@ -127,7 +127,7 @@ async def filter(client, message):
             [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
         )
         poster=None
-        if mo_tech_yt and poster:
+        if movie_info and poster:
             try:
                 await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
             except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
@@ -136,7 +136,22 @@ async def filter(client, message):
                 print(e)
                 await message.reply_text(mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
         elif movie_info:
-            await message.reply_text(mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"""📀 𝖳𝗂𝗍𝗅𝖾 : <b>{movie_info['title']}</b>
+                            
+⏱️ 𝖱𝗎𝗇𝗍𝗂𝗆𝖾 : <b>{movie_info['duration']}</b>
+🌟 𝖱𝖺𝗍𝗂𝗇𝗀 : <b>{movie_info['imdb_rating']}/10</b>
+🗳️ 𝖵𝗈𝗍𝖾𝗌 : <b>{movie_info['votes']}</b>
+
+📆 𝖱𝖾𝗅𝖾𝖺𝗌𝖾 : <b>{movie_info['release']}</b>
+🎭 𝖦𝖾𝗇𝗋𝖾 : <b>{movie_info['genre']}</b>
+🎙 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾 : <b>{movie_info['language']}</b>
+🌐 𝖢𝗈𝗎𝗇𝗍𝗋𝗒 : <b>{movie_info['country']}</b>
+
+🎥 𝖣𝗂𝗋𝖾𝖼𝗍𝗈𝗋𝗌 : <b>{movie_info['director']}</b>
+📝 𝖶𝗋𝗂𝗍𝖾𝗋𝗌 : <b>{movie_info['writer']}</b>
+🔆 𝖲𝗍𝖺𝗋𝗌 : <b>{movie_info['actors']}</b>
+
+🗒 **Storyline** : <code>{movie_info['plot']}</code>""", reply_markup=InlineKeyboardMarkup(buttons))
         else:
             await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search}</b>", reply_markup=InlineKeyboardMarkup(buttons))
 

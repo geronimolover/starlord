@@ -127,16 +127,18 @@ async def filter(client, message):
             [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
         )
         poster=None
-        if API_KEY:
-            poster=await get_poster(search)
-        if poster:
+        if imdb and imdb.get('poster'):
+            try:
                 await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
+            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):)
+                await message.reply_photo(photo=poster, caption=mo_tch_yt, reply_markup=InlineKeyboardMarkup(buttons))
+            except Exception as e:
+                print(e)
+                await message.reply_text(mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
+        elif movie_info:
+            await message.reply_text(mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
         else:
-                await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tch_yt, reply_markup=InlineKeyboardMarkup(buttons))
-        if movie_info:
-                await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
-        else:
-                await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=filter_mymes, reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search}</b>", reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
 async def group(client, message):

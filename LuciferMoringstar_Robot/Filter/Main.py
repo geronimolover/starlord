@@ -124,40 +124,18 @@ async def filter(client, message):
 
 🗒 **Storyline** : <code>{movie_info['plot']}</code>""", reply_markup=InlineKeyboardMarkup(buttons))
             except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                await message.reply_photo(photo=poster, caption=f"""📀 𝖳𝗂𝗍𝗅𝖾 : <b>{movie_info['title']}</b>
-                            
-⏱️ 𝖱𝗎𝗇𝗍𝗂𝗆𝖾 : <b>{movie_info['duration']}</b>
-🌟 𝖱𝖺𝗍𝗂𝗇𝗀 : <b>{movie_info['imdb_rating']}/10</b>
-🗳️ 𝖵𝗈𝗍𝖾𝗌 : <b>{movie_info['votes']}</b>
-
-📆 𝖱𝖾𝗅𝖾𝖺𝗌𝖾 : <b>{movie_info['release']}</b>
-🎭 𝖦𝖾𝗇𝗋𝖾 : <b>{movie_info['genre']}</b>
-🎙 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾 : <b>{movie_info['language']}</b>
-🌐 𝖢𝗈𝗎𝗇𝗍𝗋𝗒 : <b>{movie_info['country']}</b>
-
-🎥 𝖣𝗂𝗋𝖾𝖼𝗍𝗈𝗋𝗌 : <b>{movie_info['director']}</b>
-📝 𝖶𝗋𝗂𝗍𝖾𝗋𝗌 : <b>{movie_info['writer']}</b>
-🔆 𝖲𝗍𝖺𝗋𝗌 : <b>{movie_info['actors']}</b>
-
-🗒 **Storyline** : <code>{movie_info['plot']}</code>""", reply_markup=InlineKeyboardMarkup(buttons))
+                await client.send_photo(
+        chat_id=message.chat.id,
+        photo="https://telegra.ph/file/86f4da717fc9ba639e469.png",
+        caption=f"👋Hey {message.from_user.mention}\n\n👉If this movie is not in our database you will not get that movie..\n\n👉Otherwise, the spelling of the name of the requested movie may not be correct...\nSo you go to [Google](https://www.google.com/search?q={search}) and check the spelling of the name of the movie you want.\n\n👉Check if the movie is released\n\n👉Or wait till the movie uploads",
+        reply_to_message_id=message.message_id)
             except Exception as e:
                 print(e)
-                await message.reply_text(f"""📀 𝖳𝗂𝗍𝗅𝖾 : <b>{movie_info['title']}</b>
-                            
-⏱️ 𝖱𝗎𝗇𝗍𝗂𝗆𝖾 : <b>{movie_info['duration']}</b>
-🌟 𝖱𝖺𝗍𝗂𝗇𝗀 : <b>{movie_info['imdb_rating']}/10</b>
-🗳️ 𝖵𝗈𝗍𝖾𝗌 : <b>{movie_info['votes']}</b>
-
-📆 𝖱𝖾𝗅𝖾𝖺𝗌𝖾 : <b>{movie_info['release']}</b>
-🎭 𝖦𝖾𝗇𝗋𝖾 : <b>{movie_info['genre']}</b>
-🎙 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾 : <b>{movie_info['language']}</b>
-🌐 𝖢𝗈𝗎𝗇𝗍𝗋𝗒 : <b>{movie_info['country']}</b>
-
-🎥 𝖣𝗂𝗋𝖾𝖼𝗍𝗈𝗋𝗌 : <b>{movie_info['director']}</b>
-📝 𝖶𝗋𝗂𝗍𝖾𝗋𝗌 : <b>{movie_info['writer']}</b>
-🔆 𝖲𝗍𝖺𝗋𝗌 : <b>{movie_info['actors']}</b>
-
-🗒 **Storyline** : <code>{movie_info['plot']}</code>""", reply_markup=InlineKeyboardMarkup(buttons))
+                await client.send_photo(
+        chat_id=message.chat.id,
+        photo="https://telegra.ph/file/86f4da717fc9ba639e469.png",
+        caption=f"👋Hey {message.from_user.mention}\n\n👉If this movie is not in our database you will not get that movie..\n\n👉Otherwise, the spelling of the name of the requested movie may not be correct...\nSo you go to [Google](https://www.google.com/search?q={search}) and check the spelling of the name of the movie you want.\n\n👉Check if the movie is released\n\n👉Or wait till the movie uploads",
+        reply_to_message_id=message.message_id)
         elif movie_info:
             await message.reply_text(f"""📀 𝖳𝗂𝗍𝗅𝖾 : <b>{movie_info['title']}</b>
                             

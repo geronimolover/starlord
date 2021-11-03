@@ -105,13 +105,15 @@ async def filter(client, message):
                 [InlineKeyboardButton(text="📃 Pages 1/1",callback_data="pages")]
             )
             poster=None
-if API_KEY:
+            if API_KEY:
                 poster=await get_poster(search)
             if poster:
                 await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
             else:
-                await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tch_yt, reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
             if movie_info:
+                movie_info = get_movie_info(movie_name)
+            if mo_tech_yt:    
                 await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
             else:
                 await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=filter_mymes, reply_markup=InlineKeyboardMarkup(buttons))
@@ -127,13 +129,15 @@ if API_KEY:
             [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
         )
         poster=None
-if API_KEY:
+            if API_KEY:
                 poster=await get_poster(search)
             if poster:
                 await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
             else:
-                await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tch_yt, reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
             if movie_info:
+                movie_info = get_movie_info(movie_name)
+            if mo_tech_yt:    
                 await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
             else:
                 await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=filter_mymes, reply_markup=InlineKeyboardMarkup(buttons))

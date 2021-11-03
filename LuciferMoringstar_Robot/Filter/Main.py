@@ -130,7 +130,7 @@ async def filter(client, message):
         if imdb and imdb.get('poster'):
             try:
                 await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
-            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):)
+            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
                 await message.reply_photo(photo=poster, caption=mo_tch_yt, reply_markup=InlineKeyboardMarkup(buttons))
             except Exception as e:
                 print(e)

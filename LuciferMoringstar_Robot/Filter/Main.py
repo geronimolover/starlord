@@ -105,57 +105,17 @@ async def filter(client, message):
                 [InlineKeyboardButton(text="📃 Pages 1/1",callback_data="pages")]
             )
             poster=None
-            if movie_info and poster:
-                        try:
-                            await message.reply_photo(photo=poster, caption=f"""📀 𝖳𝗂𝗍𝗅𝖾 : <b>{movie_info['title']}</b>
-                            
-⏱️ 𝖱𝗎𝗇𝗍𝗂𝗆𝖾 : <b>{movie_info['duration']}</b>
-🌟 𝖱𝖺𝗍𝗂𝗇𝗀 : <b>{movie_info['imdb_rating']}/10</b>
-🗳️ 𝖵𝗈𝗍𝖾𝗌 : <b>{movie_info['votes']}</b>
-
-📆 𝖱𝖾𝗅𝖾𝖺𝗌𝖾 : <b>{movie_info['release']}</b>
-🎭 𝖦𝖾𝗇𝗋𝖾 : <b>{movie_info['genre']}</b>
-🎙 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾 : <b>{movie_info['language']}</b>
-🌐 𝖢𝗈𝗎𝗇𝗍𝗋𝗒 : <b>{movie_info['country']}</b>
-
-🎥 𝖣𝗂𝗋𝖾𝖼𝗍𝗈𝗋𝗌 : <b>{movie_info['director']}</b>
-📝 𝖶𝗋𝗂𝗍𝖾𝗋𝗌 : <b>{movie_info['writer']}</b>
-🔆 𝖲𝗍𝖺𝗋𝗌 : <b>{movie_info['actors']}</b>
-
-🗒 **Storyline** : <code>{movie_info['plot']}</code>""", reply_markup=InlineKeyboardMarkup(buttons))
-                          except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                              await client.send_photo(
-        chat_id=message.chat.id,
-        photo="https://telegra.ph/file/86f4da717fc9ba639e469.png",
-        caption=f"👋Hey {message.from_user.mention}\n\n👉If this movie is not in our database you will not get that movie..\n\n👉Otherwise, the spelling of the name of the requested movie may not be correct...\nSo you go to [Google](https://www.google.com/search?q={search}) and check the spelling of the name of the movie you want.\n\n👉Check if the movie is released\n\n👉Or wait till the movie uploads",
-        reply_to_message_id=message.message_id)
-            except Exception as e:
-                print(e)
-                await client.send_photo(
-        chat_id=message.chat.id,
-        photo="https://telegra.ph/file/86f4da717fc9ba639e469.png",
-        caption=f"👋Hey {message.from_user.mention}\n\n👉If this movie is not in our database you will not get that movie..\n\n👉Otherwise, the spelling of the name of the requested movie may not be correct...\nSo you go to [Google](https://www.google.com/search?q={search}) and check the spelling of the name of the movie you want.\n\n👉Check if the movie is released\n\n👉Or wait till the movie uploads",
-        reply_to_message_id=message.message_id)
-        elif movie_info:
-            await message.reply_text(f"""📀 𝖳𝗂𝗍𝗅𝖾 : <b>{movie_info['title']}</b>
-                            
-⏱️ 𝖱𝗎𝗇𝗍𝗂𝗆𝖾 : <b>{movie_info['duration']}</b>
-🌟 𝖱𝖺𝗍𝗂𝗇𝗀 : <b>{movie_info['imdb_rating']}/10</b>
-🗳️ 𝖵𝗈𝗍𝖾𝗌 : <b>{movie_info['votes']}</b>
-
-📆 𝖱𝖾𝗅𝖾𝖺𝗌𝖾 : <b>{movie_info['release']}</b>
-🎭 𝖦𝖾𝗇𝗋𝖾 : <b>{movie_info['genre']}</b>
-🎙 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾 : <b>{movie_info['language']}</b>
-🌐 𝖢𝗈𝗎𝗇𝗍𝗋𝗒 : <b>{movie_info['country']}</b>
-
-🎥 𝖣𝗂𝗋𝖾𝖼𝗍𝗈𝗋𝗌 : <b>{movie_info['director']}</b>
-📝 𝖶𝗋𝗂𝗍𝖾𝗋𝗌 : <b>{movie_info['writer']}</b>
-🔆 𝖲𝗍𝖺𝗋𝗌 : <b>{movie_info['actors']}</b>
-
-🗒 **Storyline** : <code>{movie_info['plot']}</code>""", reply_markup=InlineKeyboardMarkup(buttons))
-        else:
-            await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search}</b>", reply_markup=InlineKeyboardMarkup(buttons))
-            return
+if API_KEY:
+                poster=await get_poster(search)
+            if poster:
+                await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
+            else:
+                await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tch_yt, reply_markup=InlineKeyboardMarkup(buttons))
+            if movie_info:
+                await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
+            else:
+                await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=filter_mymes, reply_markup=InlineKeyboardMarkup(buttons))
+            return            
 
         data = BUTTONS[keyword]
         buttons = data['buttons'][0].copy()
@@ -167,78 +127,17 @@ async def filter(client, message):
             [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
         )
         poster=None
-        if movie_info and poster:
-            try:
-                await message.reply_photo(photo=poster, caption=f"""📀 𝖳𝗂𝗍𝗅𝖾 : <b>{movie_info['title']}</b>
-                            
-⏱️ 𝖱𝗎𝗇𝗍𝗂𝗆𝖾 : <b>{movie_info['duration']}</b>
-🌟 𝖱𝖺𝗍𝗂𝗇𝗀 : <b>{movie_info['imdb_rating']}/10</b>
-🗳️ 𝖵𝗈𝗍𝖾𝗌 : <b>{movie_info['votes']}</b>
-
-📆 𝖱𝖾𝗅𝖾𝖺𝗌𝖾 : <b>{movie_info['release']}</b>
-🎭 𝖦𝖾𝗇𝗋𝖾 : <b>{movie_info['genre']}</b>
-🎙 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾 : <b>{movie_info['language']}</b>
-🌐 𝖢𝗈𝗎𝗇𝗍𝗋𝗒 : <b>{movie_info['country']}</b>
-
-🎥 𝖣𝗂𝗋𝖾𝖼𝗍𝗈𝗋𝗌 : <b>{movie_info['director']}</b>
-📝 𝖶𝗋𝗂𝗍𝖾𝗋𝗌 : <b>{movie_info['writer']}</b>
-🔆 𝖲𝗍𝖺𝗋𝗌 : <b>{movie_info['actors']}</b>
-
-🗒 **Storyline** : <code>{movie_info['plot']}</code>""", reply_markup=InlineKeyboardMarkup(buttons))
-            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                await message.reply_photo(photo=poster, caption=f"""📀 𝖳𝗂𝗍𝗅𝖾 : <b>{movie_info['title']}</b>
-                            
-⏱️ 𝖱𝗎𝗇𝗍𝗂𝗆𝖾 : <b>{movie_info['duration']}</b>
-🌟 𝖱𝖺𝗍𝗂𝗇𝗀 : <b>{movie_info['imdb_rating']}/10</b>
-🗳️ 𝖵𝗈𝗍𝖾𝗌 : <b>{movie_info['votes']}</b>
-
-📆 𝖱𝖾𝗅𝖾𝖺𝗌𝖾 : <b>{movie_info['release']}</b>
-🎭 𝖦𝖾𝗇𝗋𝖾 : <b>{movie_info['genre']}</b>
-🎙 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾 : <b>{movie_info['language']}</b>
-🌐 𝖢𝗈𝗎𝗇𝗍𝗋𝗒 : <b>{movie_info['country']}</b>
-
-🎥 𝖣𝗂𝗋𝖾𝖼𝗍𝗈𝗋𝗌 : <b>{movie_info['director']}</b>
-📝 𝖶𝗋𝗂𝗍𝖾𝗋𝗌 : <b>{movie_info['writer']}</b>
-🔆 𝖲𝗍𝖺𝗋𝗌 : <b>{movie_info['actors']}</b>
-
-🗒 **Storyline** : <code>{movie_info['plot']}</code>""", reply_markup=InlineKeyboardMarkup(buttons))
-            except Exception as e:
-                print(e)
-                await message.reply_text(f"""📀 𝖳𝗂𝗍𝗅𝖾 : <b>{movie_info['title']}</b>
-                            
-⏱️ 𝖱𝗎𝗇𝗍𝗂𝗆𝖾 : <b>{movie_info['duration']}</b>
-🌟 𝖱𝖺𝗍𝗂𝗇𝗀 : <b>{movie_info['imdb_rating']}/10</b>
-🗳️ 𝖵𝗈𝗍𝖾𝗌 : <b>{movie_info['votes']}</b>
-
-📆 𝖱𝖾𝗅𝖾𝖺𝗌𝖾 : <b>{movie_info['release']}</b>
-🎭 𝖦𝖾𝗇𝗋𝖾 : <b>{movie_info['genre']}</b>
-🎙 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾 : <b>{movie_info['language']}</b>
-🌐 𝖢𝗈𝗎𝗇𝗍𝗋𝗒 : <b>{movie_info['country']}</b>
-
-🎥 𝖣𝗂𝗋𝖾𝖼𝗍𝗈𝗋𝗌 : <b>{movie_info['director']}</b>
-📝 𝖶𝗋𝗂𝗍𝖾𝗋𝗌 : <b>{movie_info['writer']}</b>
-🔆 𝖲𝗍𝖺𝗋𝗌 : <b>{movie_info['actors']}</b>
-
-🗒 **Storyline** : <code>{movie_info['plot']}</code>""", reply_markup=InlineKeyboardMarkup(buttons))
-        elif movie_info:
-            await message.reply_text(f"""📀 𝖳𝗂𝗍𝗅𝖾 : <b>{movie_info['title']}</b>
-                            
-⏱️ 𝖱𝗎𝗇𝗍𝗂𝗆𝖾 : <b>{movie_info['duration']}</b>
-🌟 𝖱𝖺𝗍𝗂𝗇𝗀 : <b>{movie_info['imdb_rating']}/10</b>
-🗳️ 𝖵𝗈𝗍𝖾𝗌 : <b>{movie_info['votes']}</b>
-
-📆 𝖱𝖾𝗅𝖾𝖺𝗌𝖾 : <b>{movie_info['release']}</b>
-🎭 𝖦𝖾𝗇𝗋𝖾 : <b>{movie_info['genre']}</b>
-🎙 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾 : <b>{movie_info['language']}</b>
-🌐 𝖢𝗈𝗎𝗇𝗍𝗋𝗒 : <b>{movie_info['country']}</b>
-
-🎥 𝖣𝗂𝗋𝖾𝖼𝗍𝗈𝗋𝗌 : <b>{movie_info['director']}</b>
-📝 𝖶𝗋𝗂𝗍𝖾𝗋𝗌 : <b>{movie_info['writer']}</b>
-🔆 𝖲𝗍𝖺𝗋𝗌 : <b>{movie_info['actors']}</b>
-
-🗒 **Storyline** : <code>{movie_info['plot']}</code>""", reply_markup=InlineKeyboardMarkup(buttons))
-        else:
-            await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search}</b>", reply_markup=InlineKeyboardMarkup(buttons))
+if API_KEY:
+                poster=await get_poster(search)
+            if poster:
+                await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
+            else:
+                await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tch_yt, reply_markup=InlineKeyboardMarkup(buttons))
+            if movie_info:
+                await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
+            else:
+                await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=filter_mymes, reply_markup=InlineKeyboardMarkup(buttons))
+            return
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
 async def group(client, message):

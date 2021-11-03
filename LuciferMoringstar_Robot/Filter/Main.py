@@ -131,11 +131,11 @@ async def filter(client, message):
             poster=await get_poster(search)
         if poster:
                 await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
-            else:
+        else:
                 await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tch_yt, reply_markup=InlineKeyboardMarkup(buttons))
-            if movie_info:
+        if movie_info:
                 await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
-            else:
+        else:
                 await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=filter_mymes, reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)

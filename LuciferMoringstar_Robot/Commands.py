@@ -136,7 +136,7 @@ async def start(bot, message):
     else:
         await bot.send_photo(
         chat_id=message.from_user.id,
-        photo=f"{random.choice(PHOTO)},
+        photo=f"{random.choice(PHOTO)}",
         caption=START_MSG.format(message.from_user.first_name),
         parse_mode="html",
         reply_to_message_id=message.message_id,

@@ -1,5 +1,6 @@
 import os
 import logging
+import random
 from pyrogram import Client, filters
 from pyrogram import StopPropagation
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
@@ -13,6 +14,27 @@ from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
 
 LOG_CHANNEL = BROADCAST_CHANNEL
+
+PHOTO = [
+    "https://te.legra.ph/file/041d4be90a892bc55d8ee.png",
+    "https://te.legra.ph/file/d647987b06d87c7b38a29.png",
+    "https://te.legra.ph/file/0fe1d367abbefb5a033aa.png",
+    "https://te.legra.ph/file/bec2316ec6d24bb49370d.png",
+    "https://te.legra.ph/file/c5e781763099ba65c67d2.png",
+    "https://te.legra.ph/file/c5aa4130e4633c0020b00.png",
+    "https://te.legra.ph/file/e0a69173e71037ffddd91.png",
+    "https://te.legra.ph/file/af216f19f8f7920be58f3.png",
+    "https://te.legra.ph/file/2911e3195794624ee38d1.png",
+    "https://te.legra.ph/file/2911e3195794624ee38d1.png",
+    "https://te.legra.ph/file/c7981092a7a3d26941091.png",
+    "https://te.legra.ph/file/10aa09d791f6c6ea727ce.png",
+    "https://te.legra.ph/file/429e3d45e35669e48b377.png",
+    "https://te.legra.ph/file/343bd776262906597be43.png",
+    "https://te.legra.ph/file/d90c757c29b6109aac9f2.png",
+    "https://te.legra.ph/file/303332337b7ba0b73b9c3.png",
+    "https://te.legra.ph/file/f5b3db1194bc1c5e9d2fa.png",
+    "https://te.legra.ph/file/1748e4507592d644c33cd.png"
+    ]
 
 db = Database(DB_URL, SESSION)
 
@@ -114,7 +136,7 @@ async def start(bot, message):
     else:
         await bot.send_photo(
         chat_id=message.from_user.id,
-        photo="https://telegra.ph/file/aa43fb2bc654ec557a35d.jpg",
+        photo=f"{random.choice(PHOTO)},
         caption=START_MSG.format(message.from_user.first_name),
         parse_mode="html",
         reply_to_message_id=message.message_id,

@@ -35,7 +35,7 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
 # Messages
 default_start_msg = """
-Hi, I'm **Tiger Shroff**
+Hi, I'm <b>Tiger Shroff</b>
 
 Here you can search movies in Inline mode as well as PM, 
 Use the Search buttons to search files or send me the name of file to search.

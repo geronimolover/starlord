@@ -138,9 +138,11 @@ async def filter(client, message):
         else:
             await message.reply_photo(photo="https://telegra.ph/file/8d4795557009f998c7b22.png", caption=filter_mymes, reply_markup=InlineKeyboardMarkup(buttons))
         if mo_tech_yt:
-                await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
+            mo_tech_yt=object is not subscriptable
+        if mo_tech_yt:
+            await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
         else:
-                await client.send_photo(
+            await client.send_photo(
         chat_id=message.chat.id,
         photo="https://telegra.ph/file/86f4da717fc9ba639e469.png",
         caption=f"👋Hey {message.from_user.mention}\n\n👉If this movie is not in our database you will not get that movie..\n\n👉Otherwise, the spelling of the name of the requested movie may not be correct...\nSo you go to [Google](https://www.google.com/search?q={search}) and check the spelling of the name of the movie you want.\n\n👉Check if the movie is [released](https://www.google.com/search?q={search}+release+date)\n\n👉Or wait till the movie uploads",

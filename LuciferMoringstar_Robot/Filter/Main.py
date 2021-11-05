@@ -172,7 +172,7 @@ async def group(client, message):
             LuciferMoringstar=await client.send_photo(
         chat_id=message.chat.id,
         photo="https://telegra.ph/file/86f4da717fc9ba639e469.png",
-        caption=f"👋Hey {message.from_user.mention}\n\n👉If this movie is not in our database you will not get that movie..\n\n👉Otherwise, the spelling of the name of the requested movie may not be correct...\nSo you go to [Google](https://www.google.com/search?q={search}) and check the spelling of the name of the movie you want.\n\n👉Check if the movie is released\n\n👉Or wait till the movie uploads",
+        caption=f"👋Hey {message.from_user.mention}\n\n👉If this movie is not in our database you will not get that movie..\n\n👉Otherwise, the spelling of the name of the requested movie may not be correct...\nSo you go to [Google](https://www.google.com/search?q={search}) and check the spelling of the name of the movie you want.\n\n👉Check if the movie is [released](https://www.google.com/search?q={search}+release+date)\n\n👉Or wait till the movie uploads",
         reply_to_message_id=message.message_id)
             return
         if not btn:

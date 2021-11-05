@@ -57,7 +57,7 @@ async def filter(client, message):
         btn = []
         search = message.text
         filter_mymes = f"**🗂️ Title:** {search}\n**⭐ Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**📤 Uploaded by {message.chat.title}**"
-        mo_tech_yt = f"""📀 𝖳𝗂𝗍𝗅𝖾 : <b>{search}</b>
+        mo_tech_yt = f"""📀 𝖳𝗂𝗍𝗅𝖾 : <b>{movie_info['title']}</b>
                             
 ⏱️ 𝖱𝗎𝗇𝗍𝗂𝗆𝖾 : <b>{movie_info['duration']}</b>
 🌟 𝖱𝖺𝗍𝗂𝗇𝗀 : <b>{movie_info['imdb_rating']}/10</b>

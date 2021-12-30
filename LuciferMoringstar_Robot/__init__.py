@@ -17,6 +17,7 @@ HELP = """
 ➥ /about : About Me
 ➥ /stats user Status
 
+Join @free_cartoons
 """
 
 ABOUT = """
